@@ -1,0 +1,3 @@
+﻿  swap_chain.cpp
+LINK : warning LNK4044: 无法识别的选项“/pthread”；已忽略
+  maintest.vcxproj -> F:\Dev\Vulkan Tutorial\VulkanTest\build\Debug\maintest.exe
