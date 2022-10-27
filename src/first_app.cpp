@@ -1,8 +1,18 @@
 #include "first_app.h"
+
+#define GLM_FORCE_RADIANS
+#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+#include <glm/glm.hpp>
+
 #include <stdexcept>
 #include <array>
 namespace vt
 {
+	struct SimplePushConstantData{
+		glm::vec2 offset;
+		glm::vec3 color;
+	};
+
 
 	FirstApp::FirstApp()
 	{
@@ -40,6 +50,11 @@ namespace vt
 
 	void FirstApp::createPipelineLayout()
 	{
+		VkPushConstantRange pushConstantRange{};
+		pushConstantRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
+		pushConstantRange.offset = 0;
+		pushConstantRange.size = sizeof(SimplePushConstantData);
+
 		VkPipelineLayoutCreateInfo pipeLineLayoutInfo{};
 		pipeLineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 		pipeLineLayoutInfo.setLayoutCount = 0;
@@ -151,7 +166,22 @@ namespace vt
 
 			vtPipeline->bind(commandBuffers[imageIndex]);
 			vtModel->bind(commandBuffers[imageIndex]);
-			vtModel->draw(commandBuffers[imageIndex]);
+
+			for(int j = 0; j< 4;j++){
+				SimplePushConstantData push{};
+				push.offset = {0.0f,-0.4f + j * 0.25f};
+				push.color = { 0.0f,0.0f,0.2f + 0.2f*j};
+
+				vkCmdPushConstants(
+					commandBuffers[imageIndex],
+					pipelineLayout,
+					VK_SHADER_STAGE_VERTEX_BIT|VK_SHADER_STAGE_FRAGMENT_BIT,
+					0,
+					sizeof(SimplePushConstantData),
+					&push);
+				vtModel->draw(commandBuffers[imageIndex]);
+			}
+			
 
 			vkCmdEndRenderPass(commandBuffers[imageIndex]);
 			if (vkEndCommandBuffer(commandBuffers[imageIndex]) != VK_SUCCESS)
