@@ -30,6 +30,9 @@
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\first_app.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\game_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
