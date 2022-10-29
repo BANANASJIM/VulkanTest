@@ -32,18 +32,20 @@ namespace vt
         }
         else
         {
-            vtSwapChain = std::make_unique<VtSwapChain>(vtDevice, extent, std::move(vtSwapChain));
-            if (vtSwapChain->imageCount() != commandBuffers.size())
+            std::shared_ptr<VtSwapChain> oldSwapChain = std::move(vtSwapChain);
+            vtSwapChain = std::make_unique<VtSwapChain>(vtDevice, extent, oldSwapChain);
+
+            if(!oldSwapChain ->compareSwapFormats(*vtSwapChain.get()))
             {
-                freeCommandBuffers();
-                createCommandBuffers();
+                throw std::runtime_error("Swap chain image(or depth) format has changed!");
             }
+
         }
     }
 
     void VtRenderer::createCommandBuffers()
     {
-        commandBuffers.resize(vtSwapChain->imageCount());
+        commandBuffers.resize(VtSwapChain::MAX_FRAMES_IN_FLIGHT);
 
         VkCommandBufferAllocateInfo allocInfo{};
         allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
@@ -117,6 +119,7 @@ namespace vt
         }
 
         isFrameStarted = false;
+        currentFrameIndex = (currentFrameIndex + 1)% VtSwapChain::MAX_FRAMES_IN_FLIGHT;
     }
 
     void VtRenderer::beginSwapChainRenderPass(VkCommandBuffer commandBuffer)

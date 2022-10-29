@@ -329,6 +329,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\pipeline.h" />
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\renderer.cpp" />
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\renderer.h" />
+    <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\simple_render_system.cpp" />
+    <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\simple_render_system.h" />
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\swap_chain.cpp" />
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\swap_chain.h" />
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\window.cpp" />

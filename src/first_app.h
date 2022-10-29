@@ -1,7 +1,6 @@
 #pragma once
 
 #include "window.h"
-#include "pipeline.h"
 #include "device.h"
 #include "renderer.h"
 #include "game_object.h"
@@ -28,15 +27,11 @@ namespace vt
 
 	private:
 		void loadGameObjects();
-		void createPipelineLayout();
-		void createPipeline();
-		void renderGameObjects(VkCommandBuffer commandBuffer);
 
 		VtWindow vtWindow{WIDTH, HEIGHT, "Hello Vulkan"};
 		VtDevice vtDevice{vtWindow};
 		VtRenderer vtRenderer{vtWindow,vtDevice};
-		std::unique_ptr<VtPipeline> vtPipeline;
-		VkPipelineLayout pipelineLayout;
+
 		std::vector<VtGameObject> gameObjects;
 	};
 }

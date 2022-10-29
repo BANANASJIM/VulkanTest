@@ -19,6 +19,9 @@
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\simple_render_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\swap_chain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,6 +46,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\simple_render_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\swap_chain.h">

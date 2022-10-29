@@ -24,8 +24,13 @@ namespace vt
 		bool isFrameInProgress() const { return isFrameStarted; }
 		VkCommandBuffer getCurrentCommandBuffer() const
 		{
-			assert(isFrameInProgress() && "Cannot get command buffer when frame not in progress");
-			return commandBuffers[currentImageIndex];
+			assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
+			return commandBuffers[currentFrameIndex];
+		}
+
+		int getFrameIndex() const{
+			assert(isFrameInProgress() && "Cannot get frame index when frame not in progress");
+			return currentFrameIndex;
 		}
 
 		VkCommandBuffer beginFrame();
@@ -44,7 +49,8 @@ namespace vt
 		std::unique_ptr<VtSwapChain> vtSwapChain;
 		std::vector<VkCommandBuffer> commandBuffers;
 
-		uint32_t currentImageIndex{};
+		uint32_t currentImageIndex{0};
+		int currentFrameIndex{0};
 		bool isFrameStarted{false};
 	};
 }
