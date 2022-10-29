@@ -3,7 +3,7 @@
 #include "window.h"
 #include "pipeline.h"
 #include "device.h"
-#include "swap_chain.h"
+#include "renderer.h"
 #include "game_object.h"
 
 #include <memory>
@@ -30,19 +30,13 @@ namespace vt
 		void loadGameObjects();
 		void createPipelineLayout();
 		void createPipeline();
-		void createCommandBuffers();
-		void freeCommandBuffers();
-		void drawFrame();
-		void recreateSwapChain();
-		void recordCommandBuffer(int imageIndex);
-		 void renderGameObjects(VkCommandBuffer commandBuffer);
+		void renderGameObjects(VkCommandBuffer commandBuffer);
 
 		VtWindow vtWindow{WIDTH, HEIGHT, "Hello Vulkan"};
 		VtDevice vtDevice{vtWindow};
-		std::unique_ptr<VtSwapChain> vtSwapChain;
+		VtRenderer vtRenderer{vtWindow,vtDevice};
 		std::unique_ptr<VtPipeline> vtPipeline;
-		VkPipelineLayout  pipelineLayout;
-		std::vector<VkCommandBuffer> commandBuffers;
+		VkPipelineLayout pipelineLayout;
 		std::vector<VtGameObject> gameObjects;
 	};
 }
