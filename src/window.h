@@ -4,21 +4,24 @@
 #include <GLFW/glfw3.h>
 
 #include <string>
-namespace vt {
+namespace vt
+{
 
-	class VtWindow {
+	class VtWindow
+	{
 	public:
 		VtWindow(int w, int h, std::string name);
 		~VtWindow();
 
-		VtWindow(const VtWindow&) = delete;
-		VtWindow& operator=(const VtWindow&) = delete;
+		VtWindow(const VtWindow &) = delete;
+		VtWindow &operator=(const VtWindow &) = delete;
 
 		bool shouldClose() { return glfwWindowShouldClose(window); }
 		VkExtent2D getExtent() { return {static_cast<uint32_t>(width), static_cast<uint32_t>(height)}; }
-		bool wasWindowResized(){ return framebufferResized;}
-		void resetWindowResizedFlag(){ framebufferResized = false;}
+		bool wasWindowResized() { return framebufferResized; }
+		void resetWindowResizedFlag() { framebufferResized = false; }
 		void createWindowSurface(VkInstance instance, VkSurfaceKHR *surface);
+		GLFWwindow *getGLFWwindow() const { return window; }
 
 	private:
 		static void framebufferResizeCallback(GLFWwindow *window, int width, int height);
@@ -29,7 +32,7 @@ namespace vt {
 		bool framebufferResized = false;
 
 		std::string windowName;
-		GLFWwindow* window;
+		GLFWwindow *window;
 	};
 
-}// namespace vt
+} // namespace vt

@@ -16,7 +16,7 @@ namespace vt
 	};
 
 	SimpleRenderSystem::SimpleRenderSystem(VtDevice &device, VkRenderPass renderPass)
-    : vtDevice{device}
+		: vtDevice{device}
 	{
 		createPipelineLayout();
 		createPipeline(renderPass);
@@ -26,7 +26,6 @@ namespace vt
 	{
 		vkDestroyPipelineLayout(vtDevice.device(), pipelineLayout, nullptr);
 	}
-
 
 	void SimpleRenderSystem::createPipelineLayout()
 	{
@@ -62,18 +61,20 @@ namespace vt
 			pipelineConfig);
 	}
 
-	void SimpleRenderSystem::renderGameObjects(VkCommandBuffer commandBuffer, std::vector<VtGameObject> &gameObjects)
+	void SimpleRenderSystem::renderGameObjects(VkCommandBuffer commandBuffer,
+											   std::vector<VtGameObject> &gameObjects,
+											   const VtCamera &camera)
 	{
 		vtPipeline->bind(commandBuffer);
 
+		auto projectionView = camera.getProjection() * camera.getView();
+
 		for (auto &obj : gameObjects)
 		{
-			obj.transform.rotation.y = glm::mod(obj.transform.rotation.y + 0.0001f, glm::two_pi<float>());
-			obj.transform.rotation.x = glm::mod(obj.transform.rotation.x + 0.0001f, glm::two_pi<float>());
-
 			SimplePushConstantData push{};
 			push.color = obj.color;
-			push.transform = obj.transform.mat4();
+			push.transform = projectionView * obj.transform.mat4();
+
 			vkCmdPushConstants(
 				commandBuffer,
 				pipelineLayout,

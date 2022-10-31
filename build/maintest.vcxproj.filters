@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\device.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\first_app.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\keyboard_movement_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\main.cpp">
@@ -30,6 +36,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\device.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -37,6 +46,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\game_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\keyboard_movement_controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\model.h">
