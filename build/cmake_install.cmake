@@ -36,6 +36,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("F:/Dev/Vulkan Tutorial/VulkanTest/build/Libraries/glfw/cmake_install.cmake")
   include("F:/Dev/Vulkan Tutorial/VulkanTest/build/Libraries/glm/cmake_install.cmake")
+  include("F:/Dev/Vulkan Tutorial/VulkanTest/build/Libraries/tinyobjloader/cmake_install.cmake")
 
 endif()
 

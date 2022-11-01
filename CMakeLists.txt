@@ -62,10 +62,12 @@ add_executable(maintest  ${SRC_FILES})
 
 INCLUDE_DIRECTORIES(${Vulkan_INCLUDE_DIR})
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/Libraries/glfw/include)
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/Libraries/tinyobjloader)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src)
 
 add_subdirectory(Libraries/glfw)
 add_subdirectory(Libraries/glm)
+add_subdirectory(Libraries/tinyobjloader)
 
 
 
@@ -74,4 +76,5 @@ target_link_libraries(maintest
     PUBLIC
     Vulkan::Vulkan
     glfw
+	tinyobjloader
     )

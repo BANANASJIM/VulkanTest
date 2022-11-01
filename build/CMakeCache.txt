@@ -288,6 +288,15 @@ GLFW_SOURCE_DIR:STATIC=F:/Dev/Vulkan Tutorial/VulkanTest/Libraries/glfw
 //Force use of high-performance GPU on hybrid systems
 GLFW_USE_HYBRID_HPG:BOOL=OFF
 
+//Build OBJ Sticher Application
+TINYOBJLOADER_BUILD_OBJ_STICHER:BOOL=OFF
+
+//Build Example Loader Application
+TINYOBJLOADER_BUILD_TEST_LOADER:BOOL=OFF
+
+//Build library with double precision instead of single (float)
+TINYOBJLOADER_USE_DOUBLE:BOOL=OFF
+
 //Use MSVC runtime library DLL
 USE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=ON
 
@@ -320,6 +329,15 @@ glm_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 glm_SOURCE_DIR:STATIC=F:/Dev/Vulkan Tutorial/VulkanTest/Libraries/glm
+
+//Value Computed by CMake
+tinyobjloader_BINARY_DIR:STATIC=F:/Dev/Vulkan Tutorial/VulkanTest/build/Libraries/tinyobjloader
+
+//Value Computed by CMake
+tinyobjloader_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+tinyobjloader_SOURCE_DIR:STATIC=F:/Dev/Vulkan Tutorial/VulkanTest/Libraries/tinyobjloader
 
 
 ########################
@@ -446,7 +464,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib

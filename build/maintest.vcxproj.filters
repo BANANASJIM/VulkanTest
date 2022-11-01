@@ -66,6 +66,9 @@
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\swap_chain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\window.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -78,7 +78,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) -pthread</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -96,10 +96,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -112,7 +112,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) -pthread</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>
@@ -130,10 +130,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -146,7 +146,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) -pthread</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>
@@ -164,10 +164,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -180,7 +180,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) -pthread</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -197,10 +197,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_GLFW_WIN32;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
