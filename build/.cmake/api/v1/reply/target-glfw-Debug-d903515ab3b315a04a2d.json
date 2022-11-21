@@ -12,7 +12,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Libraries/glfw/src/MinSizeRel/glfw3.lib"
+			"path" : "Libraries/glfw/src/Debug/glfw3.lib"
 		}
 	],
 	"backtrace" : 1,
@@ -94,12 +94,6 @@
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 64,
-				"parent" : 8
-			},
-			{
-				"command" : 5,
-				"file" : 1,
 				"line" : 65,
 				"parent" : 8
 			},
@@ -107,6 +101,12 @@
 				"command" : 5,
 				"file" : 1,
 				"line" : 66,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 67,
 				"parent" : 8
 			},
 			{
@@ -141,7 +141,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /MD /O1 /Ob1 /DNDEBUG"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1"
 				},
 				{
 					"backtrace" : 3,

@@ -317,12 +317,18 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\buffer.cpp" />
+    <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\buffer.h" />
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\camera.cpp" />
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\camera.h" />
+    <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\descriptors.cpp" />
+    <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\descriptors.h" />
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\device.cpp" />
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\device.h" />
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\first_app.cpp" />
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\first_app.h" />
+    <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\frame_info.h" />
+    <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\game_object.cpp" />
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\game_object.h" />
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\keyboard_movement_controller.cpp" />
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\keyboard_movement_controller.h" />

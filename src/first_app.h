@@ -1,5 +1,6 @@
 #pragma once
 
+#include "descriptors.h"
 #include "window.h"
 #include "device.h"
 #include "renderer.h"
@@ -32,6 +33,7 @@ namespace vt
 		VtDevice vtDevice{vtWindow};
 		VtRenderer vtRenderer{vtWindow,vtDevice};
 
+		std::unique_ptr<VtDescriptorPool> globalPool{};
 		std::vector<VtGameObject> gameObjects;
 	};
 }

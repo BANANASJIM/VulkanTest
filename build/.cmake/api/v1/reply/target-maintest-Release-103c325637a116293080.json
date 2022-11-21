@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "RelWithDebInfo/maintest.exe"
+			"path" : "Release/maintest.exe"
 		},
 		{
-			"path" : "RelWithDebInfo/maintest.pdb"
+			"path" : "Release/maintest.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -35,13 +35,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 75,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 64,
+				"line" : 76,
 				"parent" : 0
 			},
 			{
@@ -59,6 +53,12 @@
 			{
 				"command" : 2,
 				"file" : 0,
+				"line" : 67,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
 				"line" : 63,
 				"parent" : 0
 			}
@@ -70,7 +70,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG"
 				},
 				{
 					"fragment" : "-std:c++17"
@@ -110,14 +110,17 @@
 				0,
 				2,
 				4,
-				7,
-				9,
-				10,
-				12,
-				14,
+				6,
+				8,
+				11,
+				13,
+				15,
 				16,
 				18,
-				21
+				20,
+				22,
+				24,
+				27
 			]
 		}
 	],
@@ -141,11 +144,11 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
 				"role" : "flags"
 			},
 			{
@@ -155,12 +158,12 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "Libraries\\glfw\\src\\RelWithDebInfo\\glfw3.lib",
+				"fragment" : "Libraries\\glfw\\src\\Release\\glfw3.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "Libraries\\tinyobjloader\\RelWithDebInfo\\tinyobjloader.lib",
+				"fragment" : "Libraries\\tinyobjloader\\Release\\tinyobjloader.lib",
 				"role" : "libraries"
 			},
 			{
@@ -190,14 +193,17 @@
 				0,
 				2,
 				4,
-				7,
-				9,
-				10,
-				12,
-				14,
+				6,
+				8,
+				11,
+				13,
+				15,
 				16,
 				18,
-				21
+				20,
+				22,
+				24,
+				27
 			]
 		},
 		{
@@ -207,20 +213,34 @@
 				1,
 				3,
 				5,
-				6,
-				8,
-				11,
-				13,
-				15,
+				7,
+				9,
+				10,
+				12,
+				14,
 				17,
 				19,
-				20,
-				22
+				21,
+				23,
+				25,
+				26,
+				28
 			]
 		}
 	],
 	"sources" : 
 	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/buffer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/buffer.h",
+			"sourceGroupIndex" : 1
+		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
@@ -230,6 +250,17 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/camera.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/descriptors.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/descriptors.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -253,6 +284,17 @@
 			"backtrace" : 1,
 			"path" : "src/first_app.h",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/frame_info.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/game_object.cpp",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,

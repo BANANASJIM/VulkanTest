@@ -12,7 +12,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Libraries/tinyobjloader/Debug/tinyobjloader.lib"
+			"path" : "Libraries/tinyobjloader/RelWithDebInfo/tinyobjloader.lib"
 		}
 	],
 	"backtrace" : 1,
@@ -58,12 +58,6 @@
 			{
 				"command" : 2,
 				"file" : 1,
-				"line" : 64,
-				"parent" : 3
-			},
-			{
-				"command" : 2,
-				"file" : 1,
 				"line" : 65,
 				"parent" : 3
 			},
@@ -71,6 +65,12 @@
 				"command" : 2,
 				"file" : 1,
 				"line" : 66,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 67,
 				"parent" : 3
 			}
 		]
@@ -81,7 +81,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG"
 				},
 				{
 					"fragment" : "-std:c++17"

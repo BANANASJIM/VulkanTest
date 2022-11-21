@@ -38,7 +38,7 @@ if(AUTO_LOCATE_VULKAN)
 else()
 	message(STATUS "Attempting to locate Vulkan SDK using manual path......")
 	set(VULKAN_SDK "C:/VulkanSDK")
-	set(VULKAN_VERSION "1.0.33.0")
+	set(VULKAN_VERSION "1.3.211.0")
 	set(VULKAN_PATH "${VULKAN_SDK}/${VULKAN_VERSION}")
 	message(STATUS "Using manual specified path: ${VULKAN_PATH}")
 
@@ -60,7 +60,8 @@ message(STATUS "SRC LIST: = ${SRC_FILES}")
 
 add_executable(maintest  ${SRC_FILES})
 
-INCLUDE_DIRECTORIES(${Vulkan_INCLUDE_DIR})
+INCLUDE_DIRECTORIES(${Vulkan_INCLUDE_DIRS})
+#message(STATUS "Vulkan_INCLUDE_DIRS: = ${Vulkan_INCLUDE_DIRS}")
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/Libraries/glfw/include)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/Libraries/tinyobjloader)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src)

@@ -5,6 +5,13 @@ f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\pipeline.obj
 f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\main.obj
 f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\first_app.obj
 f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\device.obj
+f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\model.obj
+f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\renderer.obj
+f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\simple_render_system.obj
+f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\camera.obj
+f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\keyboard_movement_controller.obj
+f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\game_object.obj
+f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\buffer.obj
 f:\dev\vulkan tutorial\vulkantest\build\cmakefiles\generate.stamp
 f:\dev\vulkan tutorial\vulkantest\build\debug\maintest.exe
 f:\dev\vulkan tutorial\vulkantest\build\maintest.dir\debug\maintest.ilk
