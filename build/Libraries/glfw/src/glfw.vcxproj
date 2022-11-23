@@ -23,8 +23,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CA8562CC-A70B-3D28-B792-B6CAF5243254}</ProjectGuid>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
     <ProjectName>glfw</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -79,7 +79,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) -pthread</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -113,7 +112,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) -pthread</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>
       </ExceptionHandling>
@@ -147,7 +145,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) -pthread</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>
       </ExceptionHandling>
@@ -181,7 +178,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>C:\VulkanSDK\1.3.211.0\Include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\include;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\tinyobjloader;F:\Dev\Vulkan Tutorial\VulkanTest\src;F:\Dev\Vulkan Tutorial\VulkanTest\Libraries\glfw\src;F:\Dev\Vulkan Tutorial\VulkanTest\build\Libraries\glfw\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) -pthread</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>

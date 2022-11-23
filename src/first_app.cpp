@@ -1,5 +1,6 @@
 #include "first_app.h"
 
+#include "texture.h"
 #include "camera.h"
 #include "keyboard_movement_controller.h"
 #include "simple_render_system.h"
@@ -32,6 +33,7 @@ namespace vt
 		globalPool = VtDescriptorPool::Builder(vtDevice)
 						 .setMaxSets(VtSwapChain::MAX_FRAMES_IN_FLIGHT)
 						 .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VtSwapChain::MAX_FRAMES_IN_FLIGHT)
+						 .addPoolSize(VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VtSwapChain::MAX_FRAMES_IN_FLIGHT)
 						 .build();
 		loadGameObjects();
 	}
@@ -41,6 +43,11 @@ namespace vt
 	}
 	void FirstApp::run()
 	{
+		std::vector<std::unique_ptr<texture>> textures(1);
+		for (int i = 0; i < textures.size(); ++i)
+		{
+			textures[i] = std::make_unique<texture>(vtDevice, "F:/Dev/Vulkan Tutorial/VulkanTest/textures/texture.jpg");
+		}
 		std::vector<std::unique_ptr<VtBuffer>> uboBuffers(VtSwapChain::MAX_FRAMES_IN_FLIGHT);
 		for (int i = 0; i < uboBuffers.size(); i++)
 		{
@@ -55,14 +62,17 @@ namespace vt
 
 		auto globalSetLayout = VtDescriptorSetLayout::Builder(vtDevice)
 								   .addBinding(0, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_SHADER_STAGE_VERTEX_BIT)
+								   .addBinding(1,VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,VK_SHADER_STAGE_FRAGMENT_BIT)
 								   .build();
 
 		std::vector<VkDescriptorSet> globalDescriptorSets(VtSwapChain::MAX_FRAMES_IN_FLIGHT);
 		for (int i = 0 ;i < globalDescriptorSets.size(); i++)
 		{
 			auto bufferInfo = uboBuffers[i]->descriptorInfo();
+			auto imageInfo = textures[0]->descriptorInfo();
 			VtDescriptorWriter(*globalSetLayout, *globalPool)
 				.writeBuffer(0,&bufferInfo)
+				.writeImage(1,&imageInfo)
 				.build(globalDescriptorSets[i]);
 		}
 		SimpleRenderSystem simpleRenderSystem{vtDevice, vtRenderer.getSwapChainRenderPass(),globalSetLayout->getDescriptorSetLayout()};

@@ -37,7 +37,13 @@
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\simple_render_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\std_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\swap_chain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\window.cpp">
@@ -82,6 +88,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\swap_chain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="F:\Dev\Vulkan Tutorial\VulkanTest\src\utils.h">
