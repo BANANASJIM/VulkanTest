@@ -43,6 +43,7 @@ namespace vt
 	}
 	void FirstApp::run()
 	{
+		//TODO Need more abstract
 		std::vector<std::unique_ptr<texture>> textures(1);
 		for (int i = 0; i < textures.size(); ++i)
 		{

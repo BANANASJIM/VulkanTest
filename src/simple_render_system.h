@@ -5,7 +5,7 @@
 #include "device.h"
 #include "game_object.h"
 #include "frame_info.h"
-
+#include "material_system/material_system.h"
 #include <memory>
 #include <vector>
 
@@ -24,13 +24,17 @@ namespace vt
 		void renderGameObjects(FrameInfo &frameInfo,
 							   std::vector<VtGameObject> &gameObjects);
 
+
 	private:
-		void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+		void createPipelineLayout();
 		void createPipeline(VkRenderPass renderPass);
 
+		ShaderPass* buildShaderPass(VkRenderPass renderPass, ShaderEffect* effect);
 		VtDevice &vtDevice;
 
 		std::unique_ptr<VtPipeline> vtPipeline;
-		VkPipelineLayout pipelineLayout;
+		VkPipelineLayout pipelineLayout{VK_NULL_HANDLE};
+		std::unique_ptr<ShaderPass> pass;
+		std::unique_ptr<ShaderEffect> effect;
 	};
 }

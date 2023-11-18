@@ -1,7 +1,7 @@
 #pragma once
 #include "device.h"
 #include "buffer.h"
-
+#include "utils.h"
 // libs
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
@@ -51,8 +51,7 @@ namespace vt
 
         void bind(VkCommandBuffer commandBuffer);
         void draw(VkCommandBuffer commandBuffer);
-
-    private:
+private: 
         void createVertexBuffers(const std::vector<Vertex> &vertices);
         void createIndexBuffers(const std::vector<uint32_t> &indices);
 

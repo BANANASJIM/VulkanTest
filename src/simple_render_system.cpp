@@ -18,7 +18,7 @@ namespace vt
 	SimpleRenderSystem::SimpleRenderSystem(VtDevice &device, VkRenderPass renderPass,VkDescriptorSetLayout globalSetLayout)
 		: vtDevice{device}
 	{
-		createPipelineLayout(globalSetLayout);
+		createPipelineLayout();
 		createPipeline(renderPass);
 	}
 
@@ -27,40 +27,49 @@ namespace vt
 		vkDestroyPipelineLayout(vtDevice.device(), pipelineLayout, nullptr);
 	}
 
-	void SimpleRenderSystem::createPipelineLayout(VkDescriptorSetLayout globalSetLayout)
+	void SimpleRenderSystem::createPipelineLayout()
 	{
-		VkPushConstantRange pushConstantRange{};
-		pushConstantRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
-		pushConstantRange.offset = 0;
-		pushConstantRange.size = sizeof(SimplePushConstantData);
+		effect.reset(build_effect(vtDevice.device(),"shaders/simple_shader.vert.spv",
+			"shaders/simple_shader.frag.spv"));
 
-		std::vector<VkDescriptorSetLayout> descriptorSetLayouts{globalSetLayout};
-
-		VkPipelineLayoutCreateInfo pipeLineLayoutInfo{};
-		pipeLineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-		pipeLineLayoutInfo.setLayoutCount = static_cast<uint32_t>(descriptorSetLayouts.size());
-		pipeLineLayoutInfo.pSetLayouts = descriptorSetLayouts.data();
-		pipeLineLayoutInfo.pushConstantRangeCount = 1;
-		pipeLineLayoutInfo.pPushConstantRanges = &pushConstantRange;
-		if (vkCreatePipelineLayout(vtDevice.device(), &pipeLineLayoutInfo, nullptr, &pipelineLayout) !=
-			VK_SUCCESS)
-		{
-			throw std::runtime_error("failed to create pipeline layout!");
-		}
 	}
 
 	void SimpleRenderSystem::createPipeline(VkRenderPass renderPass)
 	{
-		assert(pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout");
-		PipelineConfigInfo pipelineConfig{};
-		VtPipeline::defaultPipelineConfigInfo(pipelineConfig);
-		pipelineConfig.renderPass = renderPass;
-		pipelineConfig.pipelineLayout = pipelineLayout;
-		vtPipeline = std::make_unique<VtPipeline>(
+		pass.reset(buildShaderPass(renderPass,effect.get()));
+		
+		// assert(pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout");
+		// PipelineConfigInfo pipelineConfig{};
+		// VtPipeline::defaultPipelineConfigInfo(pipelineConfig);
+		// pipelineConfig.renderPass = renderPass;
+		// pipelineConfig.pipelineLayout = pipelineLayout;
+		// vtPipeline = std::make_unique<VtPipeline>(
+		// 	vtDevice,
+		// 	"shaders/simple_shader.vert.spv",
+		// 	"shaders/simple_shader.frag.spv",
+		// 	pipelineConfig);
+	}
+	
+	ShaderPass* SimpleRenderSystem::buildShaderPass(VkRenderPass renderPass, ShaderEffect* effect)
+	{
+	ShaderPass* pass = new ShaderPass();
+	pass->effect = effect;
+	pass->layout = effect->builtLayout;
+	pipelineLayout = effect->builtLayout;
+	assert(pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout");
+	PipelineConfigInfo pipelineConfig{};
+	VtPipeline::defaultPipelineConfigInfo(pipelineConfig);
+	pipelineConfig.renderPass = renderPass;
+	pipelineConfig.pipelineLayout = effect->builtLayout;
+	effect->fill_stages(pipelineConfig.shaderStages);
+
+	vtPipeline = std::make_unique<VtPipeline>(
 			vtDevice,
-			"shaders/simple_shader.vert.spv",
-			"shaders/simple_shader.frag.spv",
 			pipelineConfig);
+
+	pass->pipeline = vtPipeline->getGraphicPipeline();
+
+	return pass;
 	}
 
 	void SimpleRenderSystem::renderGameObjects(FrameInfo& frameInfo,

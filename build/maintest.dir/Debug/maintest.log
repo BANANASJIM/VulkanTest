@@ -1,8 +1,0 @@
-﻿  first_app.cpp
-  main.cpp
-  renderer.cpp
-F:\Dev\Vulkan Tutorial\VulkanTest\src\renderer.cpp(149,81): warning C4244: “=”: 从“uint32_t”转换到“float”，可能丢失数据
-F:\Dev\Vulkan Tutorial\VulkanTest\src\renderer.cpp(150,82): warning C4244: “=”: 从“uint32_t”转换到“float”，可能丢失数据
-  正在生成代码...
-LINK : warning LNK4044: 无法识别的选项“/pthread”；已忽略
-  maintest.vcxproj -> F:\Dev\Vulkan Tutorial\VulkanTest\build\Debug\maintest.exe
