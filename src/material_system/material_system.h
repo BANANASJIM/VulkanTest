@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include <array>
 #include <unordered_map>
@@ -44,14 +46,16 @@ struct ShaderEffect {
 	void fill_stages(std::vector<VkPipelineShaderStageCreateInfo>& pipelineStages);
 	VkPipelineLayout builtLayout;
 
+	VkDescriptorSetLayout& getSetLayout() {return setLayouts[0];}
+
 	struct ReflectedBinding {
 		uint32_t set;
 		uint32_t binding;
 		VkDescriptorType type;
 	};
 	std::unordered_map<std::string, ReflectedBinding> bindings;
-	std::array<VkDescriptorSetLayout, 4> setLayouts;
-	std::array<uint32_t, 4> setHashes;
+	std::array<VkDescriptorSetLayout, 1> setLayouts;
+	std::array<uint32_t, 1> setHashes;
 private:
 	struct ShaderStage {
 		ShaderModule* shaderModule;
@@ -60,17 +64,5 @@ private:
 
 	std::vector<ShaderStage> stages;
 };
-
-struct ShaderPass {
-		ShaderPass() = default;
-		ShaderPass(ShaderPass&& other) noexcept = default;
-	ShaderPass& operator=(ShaderPass&& other) noexcept = default;
-
-		ShaderEffect* effect{ nullptr };
-		VkPipeline pipeline{ VK_NULL_HANDLE };
-		VkPipelineLayout layout{ VK_NULL_HANDLE };
-	};
-
-ShaderEffect* build_effect( VkDevice device, std::string vertexShader, std::string fragmentShader);
 
 }

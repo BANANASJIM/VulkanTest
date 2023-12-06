@@ -46,6 +46,7 @@ namespace vt
 
         VtModel(const VtModel &) = delete;
         VtModel &operator=(const VtModel &) = delete;
+        uint32_t getVertexCount() const {return vertexCount;}
 
         static std::unique_ptr<VtModel> createModelFromFile(VtDevice &device, const std::string &filepath);
 

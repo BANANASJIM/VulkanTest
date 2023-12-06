@@ -8,6 +8,7 @@ namespace vt
     struct PipelineConfigInfo
     {
         VkPipelineInputAssemblyStateCreateInfo inputAssemblyInfo;
+        VkPipelineVertexInputStateCreateInfo vertexInputInfo;
         VkPipelineRasterizationStateCreateInfo rasterizationInfo;
         VkPipelineMultisampleStateCreateInfo multisampleInfo;
         VkPipelineColorBlendAttachmentState colorBlendAttachment;
@@ -19,6 +20,9 @@ namespace vt
         VkRenderPass renderPass = nullptr;
         std::vector<VkPipelineShaderStageCreateInfo> shaderStages;
         uint32_t subpass = 0;
+        
+        void ConfigVertexInputState(const std::vector<VkVertexInputBindingDescription> &vertexBindingDescriptions,
+                                    const std::vector<VkVertexInputAttributeDescription> &vertexAttributeDescriptions);
     };
 
     struct PipelineHelper
@@ -52,6 +56,16 @@ namespace vt
             info.pName = "main";
             return info;
         }
+
+        static VkPipelineColorBlendAttachmentState pipelineColorBlendAttachmentState(
+			VkColorComponentFlags colorWriteMask,
+			VkBool32 blendEnable)
+		{
+			VkPipelineColorBlendAttachmentState pipelineColorBlendAttachmentState {};
+			pipelineColorBlendAttachmentState.colorWriteMask = colorWriteMask;
+			pipelineColorBlendAttachmentState.blendEnable = blendEnable;
+			return pipelineColorBlendAttachmentState;
+		}
     };
 
     class VtPipeline
@@ -65,9 +79,10 @@ namespace vt
 
         void bind(VkCommandBuffer commandBuffer);
 
-        VkPipeline getGraphicPipeline() {return graphicPipeline;}
+        VkPipeline& getGraphicPipeline() {return graphicPipeline;}
 
         static void defaultPipelineConfigInfo(PipelineConfigInfo& configInfo);
+
 
     private:
         static std::vector<char> readFile(const std::string &filepath);

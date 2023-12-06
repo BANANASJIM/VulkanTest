@@ -235,17 +235,17 @@ void ShaderEffect::reflect_layout(VkDevice device, ReflectionOverrides* override
 	mesh_pipeline_layout_info.pPushConstantRanges = constant_ranges.data();
 	mesh_pipeline_layout_info.pushConstantRangeCount = (uint32_t)constant_ranges.size();
 
-	std::array<VkDescriptorSetLayout,1> compactedLayouts;
-	int s = 0;
-	for (int i = 0; i < 1; i++) {
-		if (setLayouts[i] != VK_NULL_HANDLE) {
-			compactedLayouts[s] = setLayouts[i];
-			s++;
-		}
-	}
+	// std::array<VkDescriptorSetLayout,4> compactedLayouts;
+	// int s = 0;
+	// for (int i = 0; i < 2; i++) {
+	// 	if (setLayouts[i] != VK_NULL_HANDLE) {
+	// 		compactedLayouts[s] = setLayouts[i];
+	// 		s++;
+	// 	}
+	// }
 
-	mesh_pipeline_layout_info.setLayoutCount = s;
-	mesh_pipeline_layout_info.pSetLayouts = compactedLayouts.data();
+	mesh_pipeline_layout_info.setLayoutCount = setLayouts.size();
+	mesh_pipeline_layout_info.pSetLayouts = setLayouts.data();
 
 	
 	vkCreatePipelineLayout(device, &mesh_pipeline_layout_info, nullptr, &builtLayout);
@@ -261,22 +261,4 @@ void ShaderEffect::fill_stages(std::vector<VkPipelineShaderStageCreateInfo>& pip
 	}
 }
 
-
-ShaderEffect* build_effect( VkDevice device, std::string vertexShader, std::string fragmentShader) {
-	
-	//textured defaultlit shader
-	ShaderEffect* effect = new ShaderEffect;
-	
-	ShaderModule* vertShadermodule = new ShaderModule;
-	assert(load_shader_module(device,vertexShader.c_str(),vertShadermodule) && "Failed to load shader module.");
-	ShaderModule* fragShadermodule= new ShaderModule;
-	assert(load_shader_module(device,fragmentShader.c_str(),fragShadermodule) &&"Failed to load shader module.");
-
-	effect->add_stage(vertShadermodule, VK_SHADER_STAGE_VERTEX_BIT);
-	effect->add_stage(fragShadermodule, VK_SHADER_STAGE_FRAGMENT_BIT);
-
-	effect->reflect_layout(device, nullptr, 0);
-
-	return effect; 
-}
 }

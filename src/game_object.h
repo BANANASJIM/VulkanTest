@@ -21,7 +21,9 @@ namespace vt
     glm::mat4 mat4();
     glm::mat3 normalMatrix();
   };
-
+  //TODO 需要有descriptor 以及 uniform buffer 以及 image view 和 sampler 
+  // Build descriptor set
+  
   class VtGameObject
   {
   public:
@@ -39,10 +41,12 @@ namespace vt
     VtGameObject &operator=(VtGameObject &&) = default;
 
     id_t getId() { return id; }
+    void render();
 
     std::shared_ptr<VtModel> model{};
     glm::vec3 color{};
     TransformComponent transform{};
+    
 
   private:
     VtGameObject(id_t objId) : id{objId} {}

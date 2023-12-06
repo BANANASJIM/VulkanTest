@@ -1,4 +1,6 @@
 #include "swap_chain.h"
+#include "utils.h"
+#include "vulkanInitializer.h"
 
 // std
 #include <array>
@@ -55,7 +57,8 @@ VtSwapChain::~VtSwapChain() {
     vkDestroyFramebuffer(device.device(), framebuffer, nullptr);
   }
 
-  vkDestroyRenderPass(device.device(), renderPass, nullptr);
+  //TODO destroy else
+  //vkDestroyRenderPass(device.device(), renderPass, nullptr);
 
   // cleanup synchronization objects
   for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
@@ -66,58 +69,64 @@ VtSwapChain::~VtSwapChain() {
 }
 
 VkResult VtSwapChain::acquireNextImage(uint32_t *imageIndex) {
-  vkWaitForFences(
-      device.device(),
-      1,
-      &inFlightFences[currentFrame],
-      VK_TRUE,
-      std::numeric_limits<uint64_t>::max());
+  // vkWaitForFences(
+  //     device.device(),
+  //     1,
+  //     &inFlightFences[currentFrame],
+  //     VK_TRUE,
+  //     std::numeric_limits<uint64_t>::max());
 
   VkResult result = vkAcquireNextImageKHR(
       device.device(),
       swapChain,
       std::numeric_limits<uint64_t>::max(),
-      imageAvailableSemaphores[currentFrame],  // must be a not signaled semaphore
+      //imageAvailableSemaphores[currentFrame],  // must be a not signaled semaphore
+      semaphores.presentComplete,
       VK_NULL_HANDLE,
       imageIndex);
 
   return result;
 }
 
-VkResult VtSwapChain::submitCommandBuffers(
-    const VkCommandBuffer *buffers, uint32_t *imageIndex) {
-  if (imagesInFlight[*imageIndex] != VK_NULL_HANDLE) {
-    vkWaitForFences(device.device(), 1, &imagesInFlight[*imageIndex], VK_TRUE, UINT64_MAX);
-  }
-  imagesInFlight[*imageIndex] = inFlightFences[currentFrame];
+VkResult VtSwapChain::submitCommandBuffers( uint32_t *imageIndex) {
 
-  VkSubmitInfo submitInfo = {};
-  submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+  // if (imagesInFlight[*imageIndex] != VK_NULL_HANDLE)
+  // {
+  //   vkWaitForFences(device.device(), 1, &imagesInFlight[*imageIndex], VK_TRUE, UINT64_MAX);
+  // }
+  // imagesInFlight[*imageIndex] = inFlightFences[currentFrame];
 
-  VkSemaphore waitSemaphores[] = {imageAvailableSemaphores[currentFrame]};
-  VkPipelineStageFlags waitStages[] = {VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT};
-  submitInfo.waitSemaphoreCount = 1;
-  submitInfo.pWaitSemaphores = waitSemaphores;
-  submitInfo.pWaitDstStageMask = waitStages;
+  // VkSubmitInfo submitInfo = {};
+  // submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
 
-  submitInfo.commandBufferCount = 1;
-  submitInfo.pCommandBuffers = buffers;
+  // VkSemaphore waitSemaphores[] = {imageAvailableSemaphores[currentFrame]};
+  // VkPipelineStageFlags waitStages[] = {VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT};
+  // submitInfo.waitSemaphoreCount = 1;
+  // submitInfo.pWaitSemaphores = waitSemaphores;
+  // submitInfo.pWaitDstStageMask = waitStages;
 
-  VkSemaphore signalSemaphores[] = {renderFinishedSemaphores[currentFrame]};
-  submitInfo.signalSemaphoreCount = 1;
-  submitInfo.pSignalSemaphores = signalSemaphores;
+  // submitInfo.commandBufferCount = 1;
+  // submitInfo.pCommandBuffers = buffers;
 
-  vkResetFences(device.device(), 1, &inFlightFences[currentFrame]);
-  if (vkQueueSubmit(device.graphicsQueue(), 1, &submitInfo, inFlightFences[currentFrame]) !=
-      VK_SUCCESS) {
-    throw std::runtime_error("failed to submit draw command buffer!");
-  }
+
+  // submitInfo.signalSemaphoreCount = 1;
+  // submitInfo.pSignalSemaphores = signalSemaphores;
+
+  //TODO 
+
+  //vkResetFences(device.device(), 1, &inFlightFences[currentFrame]);
+  // if (vkQueueSubmit(device.graphicsQueue(), 1, &submitInfo, inFlightFences[currentFrame]) !=
+  //     VK_SUCCESS) {
+  //   throw std::runtime_error("failed to submit draw command buffer!");
+  // }
+
+  //VkSemaphore signalSemaphores[] = {getRenderSemaphore(currentFrame)};
 
   VkPresentInfoKHR presentInfo = {};
   presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
 
   presentInfo.waitSemaphoreCount = 1;
-  presentInfo.pWaitSemaphores = signalSemaphores;
+  presentInfo.pWaitSemaphores = &semaphores.renderComplete;
 
   VkSwapchainKHR swapChains[] = {swapChain};
   presentInfo.swapchainCount = 1;
@@ -249,17 +258,30 @@ void VtSwapChain::createRenderPass() {
   subpass.colorAttachmentCount = 1;
   subpass.pColorAttachments = &colorAttachmentRef;
   subpass.pDepthStencilAttachment = &depthAttachmentRef;
+  subpass.inputAttachmentCount = 0;
+  subpass.pInputAttachments = nullptr;
+  subpass.preserveAttachmentCount = 0;
+  subpass.pPreserveAttachments = nullptr;
+  subpass.pResolveAttachments = nullptr;
 
-  VkSubpassDependency dependency = {};
-  dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
-  dependency.srcAccessMask = 0;
-  dependency.srcStageMask =
-      VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
-  dependency.dstSubpass = 0;
-  dependency.dstStageMask =
-      VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
-  dependency.dstAccessMask =
-      VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
+  std::array<VkSubpassDependency, 2> dependencies;
+
+	dependencies[0].srcSubpass = VK_SUBPASS_EXTERNAL;
+	dependencies[0].dstSubpass = 0;
+	dependencies[0].srcStageMask = VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT | VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT;
+	dependencies[0].dstStageMask = VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT | VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT;
+	dependencies[0].srcAccessMask = VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
+	dependencies[0].dstAccessMask = VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT;
+	dependencies[0].dependencyFlags = 0;
+
+	dependencies[1].srcSubpass = VK_SUBPASS_EXTERNAL;
+	dependencies[1].dstSubpass = 0;
+	dependencies[1].srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+	dependencies[1].dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+	dependencies[1].srcAccessMask = 0;
+	dependencies[1].dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT | VK_ACCESS_COLOR_ATTACHMENT_READ_BIT;
+	dependencies[1].dependencyFlags = 0;
+
 
   std::array<VkAttachmentDescription, 2> attachments = {colorAttachment, depthAttachment};
   VkRenderPassCreateInfo renderPassInfo = {};
@@ -268,8 +290,8 @@ void VtSwapChain::createRenderPass() {
   renderPassInfo.pAttachments = attachments.data();
   renderPassInfo.subpassCount = 1;
   renderPassInfo.pSubpasses = &subpass;
-  renderPassInfo.dependencyCount = 1;
-  renderPassInfo.pDependencies = &dependency;
+  renderPassInfo.dependencyCount = static_cast<uint32_t>(dependencies.size());
+  renderPassInfo.pDependencies = dependencies.data();
 
   if (vkCreateRenderPass(device.device(), &renderPassInfo, nullptr, &renderPass) != VK_SUCCESS) {
     throw std::runtime_error("failed to create render pass!");
@@ -363,15 +385,25 @@ void VtSwapChain::createSyncObjects() {
   fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
   fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
 
-  for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
-    if (vkCreateSemaphore(device.device(), &semaphoreInfo, nullptr, &imageAvailableSemaphores[i]) !=
-            VK_SUCCESS ||
-        vkCreateSemaphore(device.device(), &semaphoreInfo, nullptr, &renderFinishedSemaphores[i]) !=
-            VK_SUCCESS ||
-        vkCreateFence(device.device(), &fenceInfo, nullptr, &inFlightFences[i]) != VK_SUCCESS) {
-      throw std::runtime_error("failed to create synchronization objects for a frame!");
-    }
-  }
+  // for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+  //   if (vkCreateSemaphore(device.device(), &semaphoreInfo, nullptr, &imageAvailableSemaphores[i]) !=
+  //           VK_SUCCESS ||
+  //       vkCreateSemaphore(device.device(), &semaphoreInfo, nullptr, &renderFinishedSemaphores[i]) !=
+  //           VK_SUCCESS ||
+  //       vkCreateFence(device.device(), &fenceInfo, nullptr, &inFlightFences[i]) != VK_SUCCESS) {
+  //     throw std::runtime_error("failed to create synchronization objects for a frame!");
+  //   }
+  // }
+
+
+	// Create a semaphore used to synchronize image presentation
+	// Ensures that the image is displayed before we start submitting new commands to the queue
+	vkCreateSemaphore(device.device(), &semaphoreInfo, nullptr, &semaphores.presentComplete);
+	// Create a semaphore used to synchronize command submission
+	// Ensures that the image is not presented until all commands have been submitted and executed
+  vkCreateSemaphore(device.device(), &semaphoreInfo, nullptr, &semaphores.renderComplete);
+
+
 }
 
 VkSurfaceFormatKHR VtSwapChain::chooseSwapSurfaceFormat(
@@ -389,8 +421,8 @@ VkSurfaceFormatKHR VtSwapChain::chooseSwapSurfaceFormat(
 VkPresentModeKHR VtSwapChain::chooseSwapPresentMode(
     const std::vector<VkPresentModeKHR> &availablePresentModes) {
   for (const auto &availablePresentMode : availablePresentModes) {
-    if (availablePresentMode == VK_PRESENT_MODE_MAILBOX_KHR) {
-      std::cout << "Present mode: Mailbox" << std::endl;
+    if (availablePresentMode == VK_PRESENT_MODE_IMMEDIATE_KHR) {
+      std::cout << "Present mode: IMMEDIATE" << std::endl;
       return availablePresentMode;
     }
   }
@@ -423,10 +455,7 @@ VkExtent2D VtSwapChain::chooseSwapExtent(const VkSurfaceCapabilitiesKHR &capabil
 }
 
 VkFormat VtSwapChain::findDepthFormat() {
-  return device.findSupportedFormat(
-      {VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT},
-      VK_IMAGE_TILING_OPTIMAL,
-      VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT);
+  return device.findDepthFormat();
 }
 
 }  // namespace lve

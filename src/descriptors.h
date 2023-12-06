@@ -78,6 +78,7 @@ namespace vt
             const VkDescriptorSetLayout descriptorSetLayout, VkDescriptorSet &descriptor) const;
 
         void freeDescriptors(std::vector<VkDescriptorSet> &descriptors) const;
+        VkDescriptorPool& getDescriptorPool() {return descriptorPool;}
 
         void resetDescriptors(std::vector<VkDescriptorSet> &descriptors) const;
 

@@ -451,6 +451,16 @@ namespace vt
     }
     throw std::runtime_error("failed to find supported format!");
   }
+  
+  VkFormat VtDevice::findDepthFormat()
+  {
+      return findSupportedFormat(
+      {VK_FORMAT_D32_SFLOAT, VK_FORMAT_D32_SFLOAT_S8_UINT, VK_FORMAT_D24_UNORM_S8_UINT},
+      VK_IMAGE_TILING_OPTIMAL,
+      VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT);
+  }
+
+  
 
   uint32_t VtDevice::findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties)
   {
@@ -605,6 +615,20 @@ namespace vt
     {
       throw std::runtime_error("failed to bind image memory!");
     }
+  }
+  
+  VkCommandBuffer VtDevice::createCommandBuffer(VkCommandBufferLevel level, VkCommandPool pool, bool begin)
+  {
+    VkCommandBufferAllocateInfo cmdBufAllocateInfo = commandBufferAllocateInfo(pool, level, 1);
+		VkCommandBuffer cmdBuffer;
+		vkAllocateCommandBuffers(device_, &cmdBufAllocateInfo, &cmdBuffer);
+		// If requested, also start recording for the new command buffer
+		if (begin)
+		{
+			VkCommandBufferBeginInfo cmdBufInfo = commandBufferBeginInfo();
+			vkBeginCommandBuffer(cmdBuffer, &cmdBufInfo);
+		}
+		return cmdBuffer;
   }
 
   void VtDevice::transitionImageLayout(VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout)

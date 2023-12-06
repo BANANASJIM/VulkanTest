@@ -16,11 +16,21 @@ namespace vt
   class VtSwapChain
   {
   public:
-    static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
+    static constexpr int MAX_FRAMES_IN_FLIGHT = 3;
+
+    struct
+    {
+      // Swap chain image presentation
+      VkSemaphore presentComplete;
+      // Command buffer submission and execution
+      VkSemaphore renderComplete;
+    } semaphores;
 
     VtSwapChain(VtDevice &deviceRef, VkExtent2D windowExtent);
     VtSwapChain(VtDevice &deviceRef, VkExtent2D windowExtent, std::shared_ptr<VtSwapChain> previous);
     ~VtSwapChain();
+
+    void setRenderPass(VkRenderPass &_renderPass) { renderPass = _renderPass;}
 
     VtSwapChain(const VtSwapChain &) = delete;
     VtSwapChain operator=(const VtSwapChain &) = delete;
@@ -33,7 +43,9 @@ namespace vt
     VkExtent2D getSwapChainExtent() { return swapChainExtent; }
     uint32_t width() { return swapChainExtent.width; }
     uint32_t height() { return swapChainExtent.height; }
-
+    VkSemaphore& getCurrentSemaphore(int currentImageIndex) {return imageAvailableSemaphores[currentImageIndex];}
+    VkSemaphore& getRenderSemaphore(int currentImageIndex) {return renderFinishedSemaphores[currentImageIndex];}
+    size_t& getCurrentFrame() {return currentFrame;}
     float extentAspectRatio()
     {
       return static_cast<float>(swapChainExtent.width) / static_cast<float>(swapChainExtent.height);
@@ -41,7 +53,7 @@ namespace vt
     VkFormat findDepthFormat();
 
     VkResult acquireNextImage(uint32_t *imageIndex);
-    VkResult submitCommandBuffers(const VkCommandBuffer *buffers, uint32_t *imageIndex);
+    VkResult submitCommandBuffers( uint32_t *imageIndex);
 
     bool compareSwapFormats(const VtSwapChain &swapChain) const
     {

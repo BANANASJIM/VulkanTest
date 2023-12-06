@@ -8,6 +8,15 @@
 
 namespace vt
 {
+    void PipelineConfigInfo::ConfigVertexInputState(const std::vector<VkVertexInputBindingDescription> &vertexBindingDescriptions,
+                                                    const std::vector<VkVertexInputAttributeDescription> &vertexAttributeDescriptions)
+    {
+        vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+        vertexInputInfo.vertexBindingDescriptionCount = static_cast<uint32_t>(vertexBindingDescriptions.size());
+        vertexInputInfo.pVertexBindingDescriptions = vertexBindingDescriptions.data();
+        vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(vertexAttributeDescriptions.size());
+        vertexInputInfo.pVertexAttributeDescriptions = vertexAttributeDescriptions.data();
+    }
 
     VtPipeline::VtPipeline(VtDevice &device, const PipelineConfigInfo &configInfo)
         : vtDevice{device}
@@ -49,15 +58,6 @@ namespace vt
         assert(configInfo.renderPass != VK_NULL_HANDLE &&
         "Cannot creat grapjocs pipeline:: no renderPass provided in configInfo");
 
-        const auto bindingDescriptions = VtModel::Vertex::getBindingDescriptions();
-        const auto attributeDescriptions = VtModel::Vertex::getAttributeDescriptions();
-        VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
-        vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-        vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
-        vertexInputInfo.vertexBindingDescriptionCount = static_cast<uint32_t>(bindingDescriptions.size());
-        vertexInputInfo.pVertexAttributeDescriptions = attributeDescriptions.data();
-        vertexInputInfo.pVertexBindingDescriptions = bindingDescriptions.data();
-
         VkPipelineViewportStateCreateInfo viewportInfo{};
         viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
         viewportInfo.viewportCount = 1;
@@ -69,7 +69,7 @@ namespace vt
         pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
         pipelineInfo.stageCount = (uint32_t)configInfo.shaderStages.size();
         pipelineInfo.pStages = configInfo.shaderStages.data();
-        pipelineInfo.pVertexInputState = &vertexInputInfo;
+        pipelineInfo.pVertexInputState = &configInfo.vertexInputInfo;
         pipelineInfo.pInputAssemblyState = &configInfo.inputAssemblyInfo;
         pipelineInfo.pViewportState = &viewportInfo;
         pipelineInfo.pRasterizationState = &configInfo.rasterizationInfo;
@@ -172,5 +172,6 @@ namespace vt
         configInfo.dynamicStateInfo.pDynamicStates = configInfo.dynamicStateEnables.data();
         configInfo.dynamicStateInfo.dynamicStateCount = static_cast<uint32_t>(configInfo.dynamicStateEnables.size());
         configInfo.dynamicStateInfo.flags = 0;
+
     }
 }

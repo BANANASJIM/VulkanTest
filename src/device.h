@@ -1,6 +1,7 @@
 #pragma once
 
 #include "window.h"
+#include "vulkanInitializer.h"
 
 // std lib headers
 #include <string>
@@ -55,7 +56,8 @@ namespace vt
     QueueFamilyIndices findPhysicalQueueFamilies() { return findQueueFamilies(physicalDevice); }
     VkFormat findSupportedFormat(
         const std::vector<VkFormat> &candidates, VkImageTiling tiling, VkFormatFeatureFlags features);
-
+    VkFormat findDepthFormat();
+    
     // Buffer Helper Functions
     void createBuffer(
         VkDeviceSize size,
@@ -74,6 +76,9 @@ namespace vt
         VkMemoryPropertyFlags properties,
         VkImage &image,
         VkDeviceMemory &imageMemory);
+
+
+    VkCommandBuffer createCommandBuffer(VkCommandBufferLevel level, VkCommandPool pool, bool begin);
 
     void transitionImageLayout(VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout);
 

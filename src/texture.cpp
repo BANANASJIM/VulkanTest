@@ -9,6 +9,12 @@ namespace vt
         createTextureSampler();
     }
 
+    texture::texture(VtDevice &vtDevice): vtDevice{vtDevice}
+    {
+        
+    }
+
+
     texture::~texture()
     {
         vkDestroyImageView(vtDevice.device(), textureImageView, nullptr);

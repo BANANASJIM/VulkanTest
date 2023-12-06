@@ -9,10 +9,12 @@
 
 namespace vt
 {
+    //TODO need to change Name
     class texture
     {
     public:
         texture(VtDevice &vtDevice, const std::string &texturePath);
+        texture(VtDevice &vtDevice);
         ~texture();
         VkDescriptorImageInfo descriptorInfo() const;
         void createTextureImage(const std::string &texturePath = "textures/texture.jpg");

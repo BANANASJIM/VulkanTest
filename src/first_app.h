@@ -25,14 +25,15 @@ namespace vt
 		FirstApp &operator=(const FirstApp &) = delete;
 
 		void run();
+		void initial();
 
 	private:
 		void loadGameObjects();
 
-		VtWindow vtWindow{WIDTH, HEIGHT, "Hello Vulkan"};
-		VtDevice vtDevice{vtWindow};
-		VtRenderer vtRenderer{vtWindow,vtDevice};
-
+		std::unique_ptr<VtWindow> vtWindow;//{WIDTH, HEIGHT, "Hello Vulkan"};
+		std::unique_ptr<VtDevice> vtDevice;//{vtWindow};
+		std::unique_ptr<SimpleRenderSystem> renderSystem;
+		std::unique_ptr<VtRenderer> vtRenderer;
 		std::unique_ptr<VtDescriptorPool> globalPool{};
 		std::vector<VtGameObject> gameObjects;
 	};
